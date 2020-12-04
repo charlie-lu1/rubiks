@@ -4,7 +4,7 @@ import Box from './Box'
 // [[1,1,1],[1,1,1],[1,1,1]],
 export default function Face({face}) {
     return (
-        <div>
+        <div className="this-is-a-face">
             This is a face
             {face.map(row => (
                 <div className='rows'>

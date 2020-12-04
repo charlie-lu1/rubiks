@@ -15,8 +15,18 @@ function App() {
 
   const [cube, setCube] = useState(initialCube)
 
+  function l2(){
+    const myCube = cube
+    myCube[1][1] = cube[2][1]
+    myCube[2][1] = cube[3][1]
+    myCube[3][1] = cube[4][1]
+    myCube[4][1] = cube[1][1]
+    setCube(myCube)
+    console.log(cube)
+  }
+
   return (
-    <div className="App">
+    <div className="App" onClick={l2}>
       Rubrik's Cube
       <Face className = 'top' face={cube[0]} />
       <div className ='middleFaces'>
@@ -26,6 +36,8 @@ function App() {
         <Face className='middle' face={cube[4]} />
       </div>
       <Face className='bottom' face={cube[5]} />
+
+      <img src="https://i.imgur.com/fYuQ3JQ.png" alt="reference" />
     </div>
   );
 }

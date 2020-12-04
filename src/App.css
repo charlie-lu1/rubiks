@@ -42,6 +42,14 @@
   flex-direction: row;
 }
 
+.this-is-a-face{
+  border: solid red 2px;
+}
+
+.this-is-a-box{
+  border: solid blue 1px;
+}
+
 .rows{
   display: flex;
   flex-direction: row;
