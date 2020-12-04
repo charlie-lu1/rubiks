@@ -17,11 +17,13 @@ function App() {
 
   function l2(){
     const myCube = cube
+    const holder = cube[1][1]
     myCube[1][1] = cube[2][1]
     myCube[2][1] = cube[3][1]
     myCube[3][1] = cube[4][1]
-    myCube[4][1] = cube[1][1]
-    setCube(myCube)
+    myCube[4][1] = holder
+    // setCube(myCube)
+    setCube([...cube, myCube])
     console.log(cube)
   }
 
