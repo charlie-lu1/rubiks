@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Face from './components/Face';
 
 const initialCube = [
-  [['red','red','red'],['red','red','red'],['red','red','red']],
+  [['red1','red2','red3'],['red4','red5','red6'],['red7','red8','red9']],
   [['blue','blue','blue'],['blue','blue','blue'],['blue','blue','blue']],
   [['green','green','green'],['green','green','green'],['green','green','green']],
   [['yellow','yellow','yellow'],['yellow','yellow','yellow'],['yellow','yellow','yellow']],
@@ -28,13 +28,54 @@ function App() {
   }
 
   function faceRotate(face, direction){
-    // if direction ==
+    if (direction === 'clockwise'){
+      const myCube = cube
+      let row
+      let row1 = []
+      let row2 = []
+      let row3 = []
+      for (row in myCube[face]){
+        let i
+        for (i in myCube[face][row]){
+          if (i == 0) {
+            row1.unshift(myCube[face][row][i])
+          } else if (i == 1){
+            row2.unshift(myCube[face][row][i])
+          } else if (i == 2){
+            row3.unshift(myCube[face][row][i])
+          }
+        }
+      }
+      myCube[face] = [row1, row2, row3]
+      setCube([...cube, myCube])
+    }
+     else {
+      const myCube = cube
+      let row
+      let row1 = []
+      let row2 = []
+      let row3 = []
+      for (row in myCube[face]){
+        let i
+        for (i in myCube[face][row]){
+          if (i == 0) {
+            row3.push(myCube[face][row][i])
+          } else if (i == 1){
+            row2.push(myCube[face][row][i])
+          } else if (i == 2){
+            row1.push(myCube[face][row][i])
+          }
+        }
+      }
+      myCube[face] = [row1, row2, row3]
+      setCube([...cube, myCube])
+    }
   }
 
   function commandInterpreter(funcName){
     switch(funcName){
       case 'l1':
-        // faceRotate
+        faceRotate(0, 'clockwise')
         rotate(1,2,3,4,0)
         break
       case 'l2':
@@ -45,7 +86,7 @@ function App() {
         rotate(1,2,3,4,2)
         break
       case 'r1':
-        // faceRotate
+        faceRotate(0, 'counterclockwise')
         rotate(4,3,2,1,0)
         break
       case 'r2':
