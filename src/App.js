@@ -17,41 +17,47 @@ function App() {
 
   const [cube, setCube] = useState(initialCube)
 
-  function click(commands){
-    let command
-    for (command in commands){
-      console.log(`case '${commands[command]}':
-      break`)
-    }
+  function rotate(aFace1, aFace2, aFace3, aFace4, row){
+    const myCube = cube
+    const holder = cube[aFace1][row]
+    myCube[aFace1][row] = cube[aFace2][row]
+    myCube[aFace2][row] = cube[aFace3][row]
+    myCube[aFace3][row] = cube[aFace4][row]
+    myCube[aFace4][row] = holder
+    setCube([...cube, myCube])
+  }
 
+  function faceRotate(face, direction){
+    // if direction ==
   }
 
   function commandInterpreter(funcName){
     switch(funcName){
       case 'l1':
+        // faceRotate
+        rotate(1,2,3,4,0)
         break
       case 'l2':
-        const myCube = cube
-        const holder = cube[1][1]
-        myCube[1][1] = cube[2][1]
-        myCube[2][1] = cube[3][1]
-        myCube[3][1] = cube[4][1]
-        myCube[4][1] = holder
-        // setCube(myCube)
-        setCube([...cube, myCube])
-        console.log(cube)
+        rotate(1,2,3,4,1)
+        break
       case 'l3':
+        // faceRotate
+        rotate(1,2,3,4,2)
         break
       case 'r1':
+        // faceRotate
+        rotate(4,3,2,1,0)
         break
       case 'r2':
-        break
+        rotate(4,3,2,1,1)
       case 'r3':
+        // faceRotate
+        rotate(4,3,2,1,2)
         break
       case 'u1':
         break
       case 'u2':
-        break
+        // rotate(5,1,3,6)
       case 'u3':
         break
       case 'd1':
@@ -79,7 +85,7 @@ function App() {
   }
 
   return (
-    <div className="App" onClick={() => click(commands)}>
+    <div className="App">
       Rubrik's Cube
 
       <div className="cube">
