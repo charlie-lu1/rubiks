@@ -4,11 +4,11 @@ import Face from './components/Face';
 
 const initialCube = [
   [['red1','red2','red3'],['red4','red5','red6'],['red7','red8','red9']],
-  [['blue','blue','blue'],['blue','blue','blue'],['blue','blue','blue']],
-  [['green','green','green'],['green','green','green'],['green','green','green']],
-  [['yellow','yellow','yellow'],['yellow','yellow','yellow'],['yellow','yellow','yellow']],
-  [['orange','orange','orange'],['orange','orange','orange'],['orange','orange','orange']],
-  [['white','white','white'],['white','white','white'],['white','white','white']]
+  [['blue1','blue2','blue3'],['blue4','blue5','blue6'],['blue7','blue8','blue9']],
+  [['green1','green2','green3'],['green4','green5','green6'],['green7','green8','green9']],
+  [['yellow1','yellow2','yellow3'],['yellow4','yellow5','yellow6'],['yellow7','yellow8','yellow9']],
+  [['orange1','orange2','orange3'],['orange4','orange5','orange6'],['orange7','orange8','orange9']],
+  [['white1','white2','white3'],['white4','white5','white6'],['white7','white8','white9']]
 ]
 
 const commands = ['l1', 'l2', 'l3', 'r1', 'r2', 'r3', 'u1', 'u2', 'u3', 'd1', 'd2', 'd3', 't1', 't2', 't3', 'v1', 'v2', 'v3']
