@@ -82,7 +82,7 @@ function App() {
         rotate(1,2,3,4,1)
         break
       case 'l3':
-        // faceRotate
+        faceRotate(5, 'counterclockwise')
         rotate(1,2,3,4,2)
         break
       case 'r1':
@@ -92,9 +92,10 @@ function App() {
       case 'r2':
         rotate(4,3,2,1,1)
       case 'r3':
-        // faceRotate
+        faceRotate(5, 'clockwise')
         rotate(4,3,2,1,2)
         break
+
       case 'u1':
         break
       case 'u2':
@@ -107,6 +108,7 @@ function App() {
         break
       case 'd3':
         break
+        
       case 't1':
         break
       case 't2':
