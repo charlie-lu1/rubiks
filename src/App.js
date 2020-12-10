@@ -17,13 +17,31 @@ function App() {
 
   const [cube, setCube] = useState(initialCube)
 
-  function rotate(aFace1, aFace2, aFace3, aFace4, row){
+  function rotateRow(aFace1, aFace2, aFace3, aFace4, row){
     const myCube = cube
     const holder = cube[aFace1][row]
     myCube[aFace1][row] = cube[aFace2][row]
     myCube[aFace2][row] = cube[aFace3][row]
     myCube[aFace3][row] = cube[aFace4][row]
     myCube[aFace4][row] = holder
+    setCube([...cube, myCube])
+    console.log(cube)
+  }
+
+  function moveUD(aFace1, aFace2, aFace3, aFace4, column){
+// 1 5 6 3
+    const myCube = cube
+    
+    function columnMover(fromFace, toFace){
+      for (let row = 0; row < 3; row++){
+        console.log(myCube[toFace][row][column])
+        console.log(cube)
+        // myCube[toFace][row][column] = cube[fromFace][row][column]
+      }
+    }
+
+    columnMover(aFace3, aFace4)
+
     setCube([...cube, myCube])
   }
 
@@ -76,30 +94,31 @@ function App() {
     switch(funcName){
       case 'l1':
         faceRotate(0, 'clockwise')
-        rotate(1,2,3,4,0)
+        rotateRow(1,2,3,4,0)
         break
       case 'l2':
-        rotate(1,2,3,4,1)
+        rotateRow(1,2,3,4,1)
         break
       case 'l3':
         faceRotate(5, 'counterclockwise')
-        rotate(1,2,3,4,2)
+        rotateRow(1,2,3,4,2)
         break
       case 'r1':
         faceRotate(0, 'counterclockwise')
-        rotate(4,3,2,1,0)
+        rotateRow(4,3,2,1,0)
         break
       case 'r2':
-        rotate(4,3,2,1,1)
+        rotateRow(4,3,2,1,1)
       case 'r3':
         faceRotate(5, 'clockwise')
-        rotate(4,3,2,1,2)
+        rotateRow(4,3,2,1,2)
         break
 
       case 'u1':
         break
       case 'u2':
-        // rotate(5,1,3,6)
+        moveUD(1, 5, 6, 3, 1)
+        break
       case 'u3':
         break
       case 'd1':
@@ -108,7 +127,7 @@ function App() {
         break
       case 'd3':
         break
-        
+
       case 't1':
         break
       case 't2':
