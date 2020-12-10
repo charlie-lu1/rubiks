@@ -25,7 +25,6 @@ function App() {
     myCube[aFace3][row] = cube[aFace4][row]
     myCube[aFace4][row] = holder
     setCube([...cube, myCube])
-    console.log(cube)
   }
 
   function moveUD(aFace1, aFace2, aFace3, aFace4, column){
@@ -166,6 +165,8 @@ function App() {
         {commands.map(command => (
           <button onClick={() => commandInterpreter(command)}>{command}</button>
         ))}
+        
+        <button onClick={() => {setCube(initialCube)}}>Reset (not working)</button>
       </div>
 
       <img src="https://i.imgur.com/fYuQ3JQ.png" alt="reference" />
