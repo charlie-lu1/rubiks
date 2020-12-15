@@ -130,7 +130,18 @@ function App() {
     }
   }
 
-  const reset = () => setCube(initialCube);
+  function reset() {
+    const colors = ["red", "blue", "green", "yellow", "orange", "white"];
+    let resetCube = [];
+    colors.forEach((c) => {
+      resetCube.push([
+        [`${c}1`, `${c}2`, `${c}3`],
+        [`${c}4`, `${c}5`, `${c}6`],
+        [`${c}7`, `${c}8`, `${c}9`],
+      ]);
+    });
+    setCube(resetCube);
+  }
 
   function commandInterpreter(funcName) {
     switch (funcName) {
