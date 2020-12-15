@@ -17,29 +17,47 @@
   color: #61dafb;
 }
 
-.cube{
-
+.cube {
 }
 
-.top{
+.top {
   margin-left: 50px;
 }
 
-.middleFaces{
+.middleFaces {
   display: flex;
   flex-direction: row;
 }
 
-.this-is-a-face{
+.this-is-a-face {
   border: solid red 2px;
   width: fit-content;
 }
 
-.this-is-a-box{
+.this-is-a-box {
   border: solid blue 1px;
 }
 
-.rows{
+.rows {
   display: flex;
   flex-direction: row;
+}
+
+.yellow {
+  background: yellow;
+}
+.green {
+  background: green;
+}
+.orange {
+  background: orange;
+}
+.blue {
+  background: blue;
+}
+.red {
+  background: red;
+}
+.white {
+  background: white;
 }
