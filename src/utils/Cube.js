@@ -89,12 +89,14 @@ export class Cube {
         this.hori1.leftAndRight(h1, l1, "top");
         this.lati2.leftAndRight(l2, h1, "top");
         this.hori2.leftAndRight(h2, l2, "top");
+        this.vert1.rotateFace(v1, 'clockwise')
         break;
       case "top_to_right":
         this.lati1.leftAndRight(l1, h1, "top");
         this.hori1.leftAndRight(h1, l2, "top");
         this.lati2.leftAndRight(l2, h2, "top");
         this.hori2.leftAndRight(h2, l1, "top");
+        this.vert1.rotateFace(v1, 'counterclockwise')
         break;
       case "mid_to_left":
         this.lati1.leftAndRight(l1, h2, "middle");
@@ -113,12 +115,14 @@ export class Cube {
         this.hori1.leftAndRight(h1, l1, "bottom");
         this.lati2.leftAndRight(l2, h1, "bottom");
         this.hori2.leftAndRight(h2, l2, "bottom");
+        this.vert2.rotateFace(v2, 'counterclockwise')
         break;
       case "bot_to_right":
         this.lati1.leftAndRight(l1, h1, "bottom");
         this.hori1.leftAndRight(h1, l2, "bottom");
         this.lati2.leftAndRight(l2, h2, "bottom");
         this.hori2.leftAndRight(h2, l1, "bottom");
+        this.vert2.rotateFace(v2, 'clockwise')
         break;
 
       //---------------------------------------------------------------
@@ -127,12 +131,14 @@ export class Cube {
         this.vert1.upAndDown(v1, l1, "Left");
         this.lati2.upAndDown(l2, v1, "Left");
         this.vert2.upAndDown(v2, l2, "Left");
+        this.hori1.rotateFace(h1, 'counterclockwise')
         break;
       case "left_to_down":
         this.lati1.upAndDown(l1, v1, "Left");
         this.vert1.upAndDown(v1, l2, "Left");
         this.lati2.upAndDown(l2, v2, "Left");
         this.vert2.upAndDown(v2, l1, "Left");
+        this.hori1.rotateFace(h1, 'clockwise')
         break;
       case "middle_to_up":
         this.lati1.upAndDown(l1, v2, "Mid");
@@ -151,25 +157,30 @@ export class Cube {
         this.vert1.upAndDown(v1, l1, "Right");
         this.lati2.upAndDown(l2, v1, "Right");
         this.vert2.upAndDown(v2, l2, "Right");
+        this.hori2.rotateFace(h2, 'clockwise')
         break;
       case "right_to_down":
         this.lati1.upAndDown(l1, v1, "Right");
         this.vert1.upAndDown(v1, l2, "Right");
         this.lati2.upAndDown(l2, v2, "Right");
         this.vert2.upAndDown(v2, l1, "Right");
+        this.hori2.rotateFace(h2, 'counterclockwise')
         break;
       //---------------------------------------------------------------
       case "h_left_to_up":
         this.hori1.upAndDown(h1, v2, "Right");
         this.vert1.upAndDown(v1, h1, "bottom");
         this.hori2.upAndDown(h2, v1, "Left");
-        this.vert2.upAndDown(v2, h2, "top");
+        this.vert2.leftAndRight(v2, h2, "top");
+        this.lati1.rotateFace(l1, 'counterclockwise')
         break;
       case "h_left_to_down":
-        // this.hori1.upAndDown(h1, v1, "Left");
-        // this.vert1.upAndDown(v1, h2, "Left");
-        // this.hori2.upAndDown(h2, v2, "Left");
-        // this.vert2.upAndDown(v2, h1, "Left");
+        //do the thing
+        this.hori1.upAndDown(h1, v1, "Left");
+        this.vert1.upAndDown(v1, h2, "Left");
+        this.hori2.upAndDown(h2, v2, "Left");
+        this.vert2.upAndDown(v2, h1, "Left");
+        this.lati1.rotateFace(l1, 'clockwise')
         break;
       case "h_middle_to_up":
         // this.hori1.upAndDown(h1, v2, "Mid");
@@ -184,16 +195,20 @@ export class Cube {
         // this.vert2.upAndDown(v2, h1, "Mid");
         break;
       case "h_right_to_up":
-        // this.hori1.upAndDown(h1, v2, "Right");
-        // this.vert1.upAndDown(v1, h1, "Right");
-        // this.hori2.upAndDown(h2, v1, "Right");
-        // this.vert2.upAndDown(v2, h2, "Right");
+        //do the thing
+        this.hori1.upAndDown(h1, v2, "Right");
+        this.vert1.upAndDown(v1, h1, "Right");
+        this.hori2.upAndDown(h2, v1, "Right");
+        this.vert2.upAndDown(v2, h2, "Right");
+        this.lati2.rotateFace(l2, 'counterclockwise')
         break;
       case "h_right_to_down":
-        // this.hori1.upAndDown(h1, v1, "Right");
-        // this.vert1.upAndDown(v1, h2, "Right");
-        // this.hori2.upAndDown(h2, v2, "Right");
-        // this.vert2.upAndDown(v2, h1, "Right");
+        //do the thing
+        this.hori1.upAndDown(h1, v1, "Right");
+        this.vert1.upAndDown(v1, h2, "Right");
+        this.hori2.upAndDown(h2, v2, "Right");
+        this.vert2.upAndDown(v2, h1, "Right");
+        this.lati2.rotateFace(l2, 'clockwise')
         break;
     }
   }
@@ -296,6 +311,29 @@ class Face {
     }
   }
   // Rotate 90 deggrees
+  rotateFace(face, direction){
+    if (direction == 'clockwise'){
+      // rotate clockwise
+      this['topLeft'] = new Cell(face['bl'])
+      this['topMid'] = new Cell(face['ml'])
+      this['topRight'] = new Cell(face['tl'])
+      this['middleRight'] = new Cell(face['tm'])
+      this['bottomRight'] = new Cell(face['tr'])
+      this['bottomMid'] = new Cell(face['mr'])
+      this['bottomLeft'] = new Cell(face['br'])
+      this['middleLeft'] = new Cell(face['bm'])
+    } else if (direction == 'counterclockwise'){
+      // rotate counterclockwise
+      this['topLeft'] = new Cell(face['tr'])
+      this['topMid'] = new Cell(face['mr'])
+      this['topRight'] = new Cell(face['br'])
+      this['middleRight'] = new Cell(face['bm'])
+      this['bottomRight'] = new Cell(face['bl'])
+      this['bottomMid'] = new Cell(face['ml'])
+      this['bottomLeft'] = new Cell(face['tl'])
+      this['middleLeft'] = new Cell(face['tm'])
+    }
+  }
   //
 }
 
