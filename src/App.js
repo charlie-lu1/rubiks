@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import Face from "./components/Face";
-
+import ReactCube from "./components/ReactCube";
 const initialCube = [
   [
     ["red1", "red2", "red3"],
@@ -202,7 +202,7 @@ function App() {
   return (
     <div className="App">
       Rubrik's Cube
-      <div className="cube">
+      {/* <div className="cube">
         <Face className="top" face={cube[0]} />
         <div className="middleFaces">
           <Face className="middle" face={cube[1]} />
@@ -218,8 +218,11 @@ function App() {
           <button onClick={() => commandInterpreter(command)}>{command}</button>
         ))}
 
-        <button onClick={() => reset()}>Reset (not working)</button>
-      </div>
+        <button className="red" onClick={() => reset()}>
+          Reset
+        </button>
+      </div> */}
+      <ReactCube />
       <img src="https://i.imgur.com/fYuQ3JQ.png" alt="reference" />
     </div>
   );
