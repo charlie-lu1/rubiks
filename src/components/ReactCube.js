@@ -7,6 +7,27 @@ let rubix = new Cube(yellow, white, green, blue, orange, red);
 const ReactCube = () => {
   const [cube, setCube] = useState(rubix);
 
+  const commands = [
+    "top_to_left",
+    "top_to_right",
+    "mid_to_left",
+    "mid_to_right",
+    "bot_to_left",
+    "bot_to_right",
+    "left_to_up",
+    "left_to_down",
+    "middle_to_up",
+    "middle_to_down",
+    "right_to_up",
+    "right_to_down",
+    // "h_left_to_up",
+    // "h_left_to_down",
+    // "h_middle_to_up",
+    // "h_middle_to_down",
+    // "h_right_to_up",
+    // "h_right_to_down"
+  ]
+
   const command = (phrase) => {
     rubix.command(phrase);
     // console.table([rubix.vert1, rubix.vert2, rubix.hori1, rubix.hori2, rubix.lati1, rubix.lati2])
@@ -245,26 +266,40 @@ const ReactCube = () => {
           </div>
         </div>
       </div>
-      <button onClick={() => command("top_to_left")}>TTL</button>
-      <button onClick={() => command("top_to_right")}>TTR</button>
-      <button onClick={() => command("mid_to_left")}>MTL</button>
-      <button onClick={() => command("mid_to_right")}>MTR</button>
-      <button onClick={() => command("bot_to_left")}>BTL</button>
-      <button onClick={() => command("bot_to_right")}>BTR</button>
-
-      <button onClick={() => command("left_to_up")}>LTU</button>
-      <button onClick={() => command("left_to_down")}>LTD</button>
-      <button onClick={() => command("middle_to_up")}>MTU</button>
-      <button onClick={() => command("middle_to_down")}>MTD</button>
-      <button onClick={() => command("right_to_up")}>RTU</button>
-      <button onClick={() => command("right_to_down")}>RTD</button>
-
-      <button onClick={() => command("h_left_to_up")}>HLTU</button>
-      <button onClick={() => command("h_left_to_down")}>HLTD</button>
-      <button onClick={() => command("h_middle_to_up")}>HMTU</button>
-      <button onClick={() => command("h_middle_to_down")}>HMTD</button>
-      <button onClick={() => command("h_right_to_up")}>HRTU</button>
-      <button onClick={() => command("h_right_to_down")}>HRTD</button>
+      <div className="button-container">
+        <div className="button-group">
+          <button onClick={() => command("top_to_left")}>TTL</button>
+          <button onClick={() => command("top_to_right")}>TTR</button>
+          <button onClick={() => command("mid_to_left")}>MTL</button>
+          <button onClick={() => command("mid_to_right")}>MTR</button>
+          <button onClick={() => command("bot_to_left")}>BTL</button>
+          <button onClick={() => command("bot_to_right")}>BTR</button>
+        </div>
+        <div className="button-group">
+          <button onClick={() => command("left_to_up")}>LTU</button>
+          <button onClick={() => command("left_to_down")}>LTD</button>
+          <button onClick={() => command("middle_to_up")}>MTU</button>
+          <button onClick={() => command("middle_to_down")}>MTD</button>
+          <button onClick={() => command("right_to_up")}>RTU</button>
+          <button onClick={() => command("right_to_down")}>RTD</button>
+        </div>
+        <div className="button-group">
+          <button onClick={() => command("h_left_to_up")}>HLTU</button>
+          <button onClick={() => command("h_left_to_down")}>HLTD</button>
+          <button onClick={() => command("h_middle_to_up")}>HMTU</button>
+          <button onClick={() => command("h_middle_to_down")}>HMTD</button>
+          <button onClick={() => command("h_right_to_up")}>HRTU</button>
+          <button onClick={() => command("h_right_to_down")}>HRTD</button>
+        </div>
+        <div className="button-group">
+          <button onClick={() => {rubix = new Cube(yellow, white, green, blue, orange, red); setCube(rubix)}}>Reset</button>
+          <button onClick={() => {
+            for (let i = 0; i < Math.floor(Math.random() * 79) + 20; i++){
+              command(`${commands[Math.floor(Math.random() * (commands.length - 1))]}`)
+            }
+          }}>Scramble</button>
+        </div>
+      </div>
     </>
   );
 };
