@@ -1,4 +1,4 @@
-# About Rubrik's Cube
+# About Rubik's Cube
 An exercise in React and state management to simulate a Rubrik's cube on a web app.
 
 # Contributors
