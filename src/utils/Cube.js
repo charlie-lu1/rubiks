@@ -292,7 +292,7 @@ class Face {
     this[`middle${column}`] = new Cell(toFace[`m${c}`]);
     this[`bottom${column}`] = new Cell(toFace[`b${c}`]);
   }
-  // Rotate 90 deggrees
+  // Rotate 90 degrees
   rotateFace(face, direction){
     if (direction == 'clockwise'){
       // rotate clockwise
