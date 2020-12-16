@@ -239,30 +239,22 @@ class Face {
         // entering the back face
 
         if (row === "top") {
-          console.log("enter top");
-          // Top of From >> Bottom of Back
-          console.log(toFace.tl);
           this.topLeft = new Cell(fromFace.bl);
           this.topMid = new Cell(fromFace.bm);
           this.topRight = new Cell(fromFace.br);
         } else {
-          console.log("enter else");
-          // Bottom of From >> Top of Back
           this.bottomLeft = new Cell(fromFace.tl);
           this.bottomMid = new Cell(fromFace.tm);
           this.bottomRight = new Cell(fromFace.tr);
         }
       } else if (toFace.id === "lati2" && fromFace.id !== "lati2") {
-        //leaving the back face
         if (row === "top") {
           console.log("leave top");
-          // Top of From >> Bottom of Back
           this.bottomLeft = new Cell(fromFace.tl);
           this.bottomMid = new Cell(fromFace.tm);
           this.bottomRight = new Cell(fromFace.tr);
         } else {
           console.log("laeve else");
-          // Bottom of From >> Top of Back
           this.topLeft = new Cell(fromFace.bl);
           this.topMid = new Cell(fromFace.bm);
           this.topRight = new Cell(fromFace.br);
