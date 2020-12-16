@@ -42,22 +42,53 @@
   display: flex;
   flex-direction: row;
 }
+.cube {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.mid {
+  display: flex;
+  width: 100%;
+}
+.face {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  width: 25%;
+}
+.row {
+  display: flex;
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+}
+.cell {
+  display: flex;
+  width: 32%;
+  border: 1px solid white;
+  justify-content: center;
+}
 
 .yellow {
   background: yellow;
 }
+.white {
+  background: white;
+}
 .green {
   background: green;
-}
-.orange {
-  background: orange;
 }
 .blue {
   background: blue;
 }
+.orange {
+  background: orange;
+}
 .red {
   background: red;
 }
-.white {
-  background: white;
+
+.none {
+  border: none;
 }
