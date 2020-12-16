@@ -294,7 +294,7 @@ const ReactCube = () => {
         <div className="button-group">
           <button onClick={() => {rubix = new Cube(yellow, white, green, blue, orange, red); setCube(rubix)}}>Reset</button>
           <button onClick={() => {
-            for (let i = 0; i < 20; i++){
+            for (let i = 0; i < Math.floor(Math.random() * 79) + 20; i++){
               command(`${commands[Math.floor(Math.random() * (commands.length - 1))]}`)
             }
           }}>Scramble</button>
