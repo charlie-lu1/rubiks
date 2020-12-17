@@ -6,6 +6,7 @@ let rubix = new Cube(yellow, white, green, blue, orange, red);
 
 const ReactCube = () => {
   const [cube, setCube] = useState(rubix);
+  const [commandies, setCommands] = useState(['do_nothing', 'do_nothing', 'do_nothing', 'do_nothing'])
 
   const commands = [
     "top_to_left",
@@ -122,35 +123,35 @@ const ReactCube = () => {
           </div>
           <div className="face">
             <div className="row">
-              <div className={`cell ${cube.lati1.topLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_up", "top_to_left", "left_to_down", "top_to_right"])} className={`cell ${cube.lati1.topLeft.self}`}>
                 {cube.lati1.topLeft.num}
               </div>
-              <div className={`cell ${cube.lati1.topMid.self}`}>
+              <div onClick={() => setCommands(["mid_to_up", "top_to_left", "mid_to_down", "top_to_right"])} className={`cell ${cube.lati1.topMid.self}`}>
                 {cube.lati1.topMid.num}
               </div>
-              <div className={`cell ${cube.lati1.topRight.self}`}>
+              <div onClick={() => setCommands(["right_to_up", "top_to_left", "right_to_down", "top_to_right"])} className={`cell ${cube.lati1.topRight.self}`}>
                 {cube.lati1.topRight.num}
               </div>
             </div>
             <div className="row">
-              <div className={`cell ${cube.lati1.middleLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_up", "mid_to_left", "left_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleLeft.self}`}>
                 {cube.lati1.middleLeft.num}
               </div>
-              <div className={`cell ${cube.lati1.middleMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_up", "mid_to_left", "middle_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleMid.self}`}>
                 {cube.lati1.middleMid.num}
               </div>
-              <div className={`cell ${cube.lati1.middleRight.self}`}>
+              <div onClick={() => setCommands(["right_to_up", "mid_to_left", "right_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleRight.self}`}>
                 {cube.lati1.middleRight.num}
               </div>
             </div>
             <div className="row">
-              <div className={`cell ${cube.lati1.bottomLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_up", "bot_to_left", "left_to_down", "bot_to_right"])} className={`cell ${cube.lati1.bottomLeft.self}`}>
                 {cube.lati1.bottomLeft.num}
               </div>
-              <div className={`cell ${cube.lati1.bottomMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_up", "bot_to_left", "middle_to_down", "bot_to_right"])} className={`cell ${cube.lati1.bottomMid.self}`}>
                 {cube.lati1.bottomMid.num}
               </div>
-              <div className={`cell ${cube.lati1.bottomRight.self}`}>
+              <div onClick={() => setCommands(["right_to_up", "bot_to_left", "right_to_down", "bot_to_right"])} className={`cell ${cube.lati1.bottomRight.self}`}>
                 {cube.lati1.bottomRight.num}
               </div>
             </div>
@@ -265,6 +266,15 @@ const ReactCube = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="test-buttons">
+        <button onClick={() => command(`${commandies[0]}`)}>Up</button>
+        <div>
+          <button onClick={() => command(`${commandies[1]}`)}>Left</button>
+          <button onClick={() => command(`${commandies[3]}`)}>Right</button>
+        </div>
+        <button onClick={() => command(`${commandies[2]}`)}>Down</button>
+
       </div>
       <div className="button-container">
         <div className="button-group">
