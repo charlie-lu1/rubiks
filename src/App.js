@@ -202,26 +202,6 @@ function App() {
   return (
     <div className="App">
       Rubrik's Cube
-      {/* <div className="cube">
-        <Face className="top" face={cube[0]} />
-        <div className="middleFaces">
-          <Face className="middle" face={cube[1]} />
-          <Face className="middle" face={cube[2]} />
-          <Face className="middle" face={cube[3]} />
-          <Face className="middle" face={cube[4]} />
-        </div>
-        <Face className="bottom" face={cube[5]} />
-      </div>
-      <div className="controls">
-        <h2>Controls</h2>
-        {commands.map((command) => (
-          <button onClick={() => commandInterpreter(command)}>{command}</button>
-        ))}
-
-        <button className="red" onClick={() => reset()}>
-          Reset
-        </button>
-      </div> */}
       <ReactCube />
       <img src="https://i.imgur.com/fYuQ3JQ.png" alt="reference" />
     </div>

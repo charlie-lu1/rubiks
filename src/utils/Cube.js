@@ -172,7 +172,7 @@ export class Cube {
         this.vert1.upAndDown(v1, h1, "bottom");
         this.hori2.upAndDown(h2, v1, "Left");
         this.vert2.upAndDown(v2, h2, "top");
-        this.lati1.rotateFace(l1, "counterclockwise");
+        this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_left_to_down":
         //do the thing
@@ -183,38 +183,16 @@ export class Cube {
         this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_middle_to_up":
-        this.hori1.topMid = new Cell(v2.ml);
-        this.hori1.middleMid = new Cell(v2.mm);
-        this.hori1.bottomMid = new Cell(v2.mr);
-
-        this.hori2.topMid = new Cell(v1.mr);
-        this.hori2.middleMid = new Cell(v1.mm);
-        this.hori2.bottomMid = new Cell(v1.ml);
-
-        this.vert1.middleLeft = new Cell(h1.bm);
-        this.vert1.middleMid = new Cell(h1.mm);
-        this.vert1.middleRight = new Cell(h1.tm);
-
-        this.vert2.middleLeft = new Cell(h2.tm);
-        this.vert2.middleMid = new Cell(h2.mm);
-        this.vert2.middleRight = new Cell(h2.bm);
+        // this.hori1.upAndDown(h1, v2, "Mid");
+        // this.vert1.upAndDown(v1, h1, "Mid");
+        // this.hori2.upAndDown(h2, v1, "Mid");
+        // this.vert2.upAndDown(v2, h2, "Mid");
         break;
       case "h_middle_to_down":
-        this.hori1.topMid = new Cell(v1.ml);
-        this.hori1.middleMid = new Cell(v1.mm);
-        this.hori1.bottomMid = new Cell(v1.mr);
-
-        this.hori2.topMid = new Cell(v2.mr);
-        this.hori2.middleMid = new Cell(v2.mm);
-        this.hori2.bottomMid = new Cell(v2.ml);
-
-        this.vert1.middleLeft = new Cell(h2.bm);
-        this.vert1.middleMid = new Cell(h2.mm);
-        this.vert1.middleRight = new Cell(h2.tm);
-
-        this.vert2.middleLeft = new Cell(h1.tm);
-        this.vert2.middleMid = new Cell(h1.mm);
-        this.vert2.middleRight = new Cell(h1.bm);
+        // this.hori1.upAndDown(h1, v1, "Mid");
+        // this.vert1.upAndDown(v1, h2, "Mid");
+        // this.hori2.upAndDown(h2, v2, "Mid");
+        // this.vert2.upAndDown(v2, h1, "Mid");
         break;
       case "h_right_to_up":
         //do the thing
@@ -232,9 +210,6 @@ export class Cube {
         this.vert2.upAndDown(v2, h1, "Right");
         this.lati2.rotateFace(l2, "clockwise");
         break;
-      //
-      case "do_nothing":
-        console.log("nothing")
     }
   }
 }
@@ -270,32 +245,40 @@ class Face {
 
     if (row === "top" || row === "bottom") {
       if (fromFace.id !== "lati2" && toFace.id === "lati2") {
+        // leaving the back face
         if (row === "top") {
+          // changing top row
           this.topLeft = new Cell(toFace.bl);
-          this.topMid = new Cell(toFace.bm);
+          this.topMid = new Cell(toFace.bm); // T >> B
           this.topRight = new Cell(toFace.br);
         } else {
+          // changing bottom row
           this.bottomLeft = new Cell(toFace.tl);
-          this.bottomMid = new Cell(toFace.tm);
+          this.bottomMid = new Cell(toFace.tm); // B >> T
           this.bottomRight = new Cell(toFace.tr);
         }
       } else if (fromFace.id === "lati2" && toFace.id !== "lati2") {
+        //entering the back face
         if (row === "top") {
+          // changing top row
           this.bottomLeft = new Cell(toFace.tl);
-          this.bottomMid = new Cell(toFace.tm);
+          this.bottomMid = new Cell(toFace.tm); //B >> T
           this.bottomRight = new Cell(toFace.tr);
         } else {
+          // changing bottom row
           this.topLeft = new Cell(toFace.bl);
-          this.topMid = new Cell(toFace.bm);
+          this.topMid = new Cell(toFace.bm); //T >> B
           this.topRight = new Cell(toFace.br);
         }
       } else {
+        // everything else
         const r = row.split("")[0];
         this[`${row}Left`] = new Cell(toFace[`${r}l`]);
         this[`${row}Mid`] = new Cell(toFace[`${r}m`]);
         this[`${row}Right`] = new Cell(toFace[`${r}r`]);
       }
     } else {
+      // middle row
       const r = row.split("")[0];
       this[`${row}Left`] = new Cell(toFace[`${r}l`]);
       this[`${row}Mid`] = new Cell(toFace[`${r}m`]);
@@ -303,23 +286,28 @@ class Face {
     }
   }
   upAndDown(fromFace, toFace, column) {
+    console.log(column);
     const c = column.split("")[0].toLowerCase();
     if (fromFace.id === "vert1" && toFace.id === "hori1") {
+      // left >> top
       this["bottomLeft"] = new Cell(toFace.br);
       this["bottomMid"] = new Cell(toFace.mr);
       this["bottomRight"] = new Cell(toFace.tr);
     }
     if (fromFace.id === "hori2" && toFace.id === "vert1") {
+      // top >> right
       this[`topLeft`] = new Cell(toFace.bl);
       this[`middleLeft`] = new Cell(toFace.bm);
       this[`bottomLeft`] = new Cell(toFace.br);
     }
     if (fromFace.id === "vert2" && toFace.id === "hori2") {
+      //right >> bottom
       this[`topLeft`] = new Cell(toFace.bl);
       this[`topMid`] = new Cell(toFace.ml);
       this[`topRight`] = new Cell(toFace.tl);
     }
     if (fromFace.id === "hori1" && toFace.id === "vert2") {
+      //bottom >> left
       this[`topRight`] = new Cell(toFace.tl);
       this[`middleRight`] = new Cell(toFace.tm);
       this[`bottomRight`] = new Cell(toFace.tr);
@@ -330,9 +318,49 @@ class Face {
       toFace.id !== "hori1" &&
       toFace.id !== "hori2"
     ) {
-      this[`top${column}`] = new Cell(toFace[`t${c}`]);
-      this[`middle${column}`] = new Cell(toFace[`m${c}`]);
-      this[`bottom${column}`] = new Cell(toFace[`b${c}`]);
+      if (
+        (fromFace.id !== "lati2" &&
+          toFace.id === "lati2" &&
+          column === "Left") ||
+        column === "Right"
+      ) {
+        //  back face >> any face
+        // leaving the back face
+        if (column === "Left") {
+          // changing bottom column
+          this.topLeft = new Cell(toFace.tr);
+          this.middleLeft = new Cell(toFace.mr); // B >> T
+          this.bottomLeft = new Cell(toFace.br);
+        } else {
+          // changing top column
+          this.topRight = new Cell(toFace.tl);
+          this.middleRight = new Cell(toFace.ml); // T >> B
+          this.bottomRight = new Cell(toFace.bl);
+        }
+      } else if (
+        (fromFace.id === "lati2" &&
+          toFace.id !== "lati2" &&
+          column === "Left") ||
+        column === "Right"
+      ) {
+        // any face >> back face
+        //entering the back face
+        if (column === "Left") {
+          // changing top column
+          this.topRight = new Cell(toFace.tl);
+          this.middleRight = new Cell(toFace.ml); // B >> T
+          this.bottomRight = new Cell(toFace.bl);
+        } else {
+          // changing bottom column
+          this.topLeft = new Cell(toFace.tr);
+          this.middleLeft = new Cell(toFace.mr); // T >> B
+          this.bottomLeft = new Cell(toFace.br);
+        }
+      } else {
+        this[`top${column}`] = new Cell(toFace[`t${c}`]);
+        this[`middle${column}`] = new Cell(toFace[`m${c}`]);
+        this[`bottom${column}`] = new Cell(toFace[`b${c}`]);
+      }
     }
   }
   // Rotate 90 degrees
