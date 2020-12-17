@@ -210,6 +210,9 @@ export class Cube {
         this.vert2.upAndDown(v2, h1, "Right");
         this.lati2.rotateFace(l2, 'clockwise')
         break;
+      //
+      case "do_nothing":
+        console.log("nothing")
     }
   }
 }

@@ -6,6 +6,7 @@ let rubix = new Cube(yellow, white, green, blue, orange, red);
 
 const ReactCube = () => {
   const [cube, setCube] = useState(rubix);
+  const [commandies, setCommands] = useState('do_nothing', 'do_nothing', 'do_nothing', 'do_nothing')
 
   const commands = [
     "top_to_left",
@@ -136,7 +137,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.lati1.middleLeft.self}`}>
                 {cube.lati1.middleLeft.num}
               </div>
-              <div className={`cell ${cube.lati1.middleMid.self}`}>
+              <div onClick={() => setCommands["middle_to_up", "mid_to_left", "middle_to_down", "mid_to_right"]} className={`cell ${cube.lati1.middleMid.self}`}>
                 {cube.lati1.middleMid.num}
               </div>
               <div className={`cell ${cube.lati1.middleRight.self}`}>
@@ -266,6 +267,13 @@ const ReactCube = () => {
           </div>
         </div>
       </div>
+      {/* <div className="test-buttons">
+      
+        <button onClick={() => command(`${commandies[1]}`)}>Left</button>
+        <button onClick={() => command(`${commandies[2]}`)}>Down</button>
+        <button onClick={() => command(`${commandies[3]}`)}>Right</button>
+
+      </div> */}
       <div className="button-container">
         <div className="button-group">
           <button onClick={() => command("top_to_left")}>TTL</button>
