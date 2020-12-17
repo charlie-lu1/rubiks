@@ -5,18 +5,9 @@ import { Cube } from "../utils/Cube";
 let rubix = new Cube(yellow, white, green, blue, orange, red);
 
 const ReactCube = () => {
-
-  React.useEffect(() => {
-    window.addEventListener('keydown', (event) => {
-      console.log(event.key)
-      console.log(event)
-      // switch(event.key){
-      //   case W
-      // }
-    });
-  }, []);
   
   const [cube, setCube] = useState(rubix);
+  // commandies will keep track of the four commands tied to WASD
   const [commandies, setCommands] = useState(['do_nothing', 'do_nothing', 'do_nothing', 'do_nothing'])
 
   const commands = [
@@ -54,6 +45,34 @@ const ReactCube = () => {
     setCube(nextCube);
   };
 
+  // On pressing WASD, move the selected cell up or down
+  React.useEffect(() => {
+    window.addEventListener('keydown', (event) => {
+      switch(event.key){
+        case 'w':
+          command(commandies[0]);
+          console.log(commandies)
+          console.log('w pressed')
+          break
+        case 'a':
+          command(commandies[1]);
+          // console.log(commandies)
+          // console.log('a pressed')
+          break
+        case 's':
+          command(commandies[3]);
+          // console.log(commandies)
+          // console.log('s pressed')
+          break
+        case 'd':
+          command(commandies[2]);
+          // console.log(commandies)
+          // console.log('d pressed')
+        break
+      }
+    });
+  }, [commandies]);
+
   return (
     <>
       <div className="cube">
@@ -72,13 +91,13 @@ const ReactCube = () => {
               </div>
             </div>
             <div className="row">
-              <div className={`cell ${cube.vert1.middleLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_up", "h_middle_to_down", "left_to_down", "h_middle_to_up"])} className={`cell ${cube.vert1.middleLeft.self}`}>
                 {cube.vert1.middleLeft.num}
               </div>
-              <div className={`cell ${cube.vert1.middleMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_up", "h_middle_to_down", "middle_to_down", "h_middle_to_up"])} className={`cell ${cube.vert1.middleMid.self}`}>
                 {cube.vert1.middleMid.num}
               </div>
-              <div className={`cell ${cube.vert1.middleRight.self}`}>
+              <div onClick={() => setCommands(["right_to_up", "h_middle_to_down", "right_to_down", "h_middle_to_up"])} className={`cell ${cube.vert1.middleRight.self}`}>
                 {cube.vert1.middleRight.num}
               </div>
             </div>
@@ -102,7 +121,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori1.topLeft.self}`}>
                 {cube.hori1.topLeft.num}
               </div>
-              <div className={`cell ${cube.hori1.topMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_up", "top_to_left", "h_middle_to_down", "top_to_right"])} className={`cell ${cube.hori1.topMid.self}`}>
                 {cube.hori1.topMid.num}
               </div>
               <div className={`cell ${cube.hori1.topRight.self}`}>
@@ -113,7 +132,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori1.middleLeft.self}`}>
                 {cube.hori1.middleLeft.num}
               </div>
-              <div className={`cell ${cube.hori1.middleMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_up", "mid_to_left", "h_middle_to_down", "mid_to_right"])} className={`cell ${cube.hori1.middleMid.self}`}>
                 {cube.hori1.middleMid.num}
               </div>
               <div className={`cell ${cube.hori1.middleRight.self}`}>
@@ -124,7 +143,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori1.bottomLeft.self}`}>
                 {cube.hori1.bottomLeft.num}
               </div>
-              <div className={`cell ${cube.hori1.bottomMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_up", "bot_to_left", "h_middle_to_down", "bot_to_right"])} className={`cell ${cube.hori1.bottomMid.self}`}>
                 {cube.hori1.bottomMid.num}
               </div>
               <div className={`cell ${cube.hori1.bottomRight.self}`}>
@@ -148,7 +167,7 @@ const ReactCube = () => {
               <div onClick={() => setCommands(["left_to_up", "mid_to_left", "left_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleLeft.self}`}>
                 {cube.lati1.middleLeft.num}
               </div>
-              <div onClick={() => setCommands(["middle_to_up", "mid_to_left", "middle_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleMid.self}`}>
+              <div onClick={() => {setCommands(["middle_to_up", "mid_to_left", "middle_to_down", "mid_to_right"]); console.log(commandies)}} className={`cell ${cube.lati1.middleMid.self}`}>
                 {cube.lati1.middleMid.num}
               </div>
               <div onClick={() => setCommands(["right_to_up", "mid_to_left", "right_to_down", "mid_to_right"])} className={`cell ${cube.lati1.middleRight.self}`}>
@@ -172,7 +191,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori2.topLeft.self}`}>
                 {cube.hori2.topLeft.num}
               </div>
-              <div className={`cell ${cube.hori2.topMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_down", "top_to_left", "h_middle_to_up", "top_to_right"])} className={`cell ${cube.hori2.topMid.self}`}>
                 {cube.hori2.topMid.num}
               </div>
               <div className={`cell ${cube.hori2.topRight.self}`}>
@@ -183,7 +202,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori2.middleLeft.self}`}>
                 {cube.hori2.middleLeft.num}
               </div>
-              <div className={`cell ${cube.hori2.middleMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_down", "mid_to_left", "h_middle_to_up", "mid_to_right"])} className={`cell ${cube.hori2.middleMid.self}`}>
                 {cube.hori2.middleMid.num}
               </div>
               <div className={`cell ${cube.hori2.middleRight.self}`}>
@@ -194,7 +213,7 @@ const ReactCube = () => {
               <div className={`cell ${cube.hori2.bottomLeft.self}`}>
                 {cube.hori2.bottomLeft.num}
               </div>
-              <div className={`cell ${cube.hori2.bottomMid.self}`}>
+              <div onClick={() => setCommands(["h_middle_to_down", "bot_to_left", "h_middle_to_up", "bot_to_right"])} className={`cell ${cube.hori2.bottomMid.self}`}>
                 {cube.hori2.bottomMid.num}
               </div>
               <div className={`cell ${cube.hori2.bottomRight.self}`}>
@@ -204,24 +223,24 @@ const ReactCube = () => {
           </div>
           <div className="face">
             <div className="row">
-              <div className={`cell ${cube.lati2.bottomLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_down", "top_to_left", "left_to_up", "top_to_right"])}  className={`cell ${cube.lati2.bottomLeft.self}`}>
                 {cube.lati2.bottomLeft.num}
               </div>
-              <div className={`cell ${cube.lati2.bottomMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_down", "top_to_left", "middle_to_up", "top_to_right"])} className={`cell ${cube.lati2.bottomMid.self}`}>
                 {cube.lati2.bottomMid.num}
               </div>
-              <div className={`cell ${cube.lati2.bottomRight.self}`}>
+              <div onClick={() => setCommands(["right_to_down", "top_to_left", "right_to_up", "top_to_right"])} className={`cell ${cube.lati2.bottomRight.self}`}>
                 {cube.lati2.bottomRight.num}
               </div>
             </div>
             <div className="row">
-              <div className={`cell ${cube.lati2.middleLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_down", "mid_to_left", "left_to_up", "mid_to_right"])}  className={`cell ${cube.lati2.middleLeft.self}`}>
                 {cube.lati2.middleLeft.num}
               </div>
-              <div className={`cell ${cube.lati2.middleMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_down", "mid_to_left", "middle_to_up", "mid_to_right"])} className={`cell ${cube.lati2.middleMid.self}`}>
                 {cube.lati2.middleMid.num}
               </div>
-              <div className={`cell ${cube.lati2.middleRight.self}`}>
+              <div onClick={() => setCommands(["right_to_down", "mid_to_left", "right_to_up", "mid_to_right"])}  className={`cell ${cube.lati2.middleRight.self}`}>
                 {cube.lati2.middleRight.num}
               </div>
             </div>
@@ -254,13 +273,13 @@ const ReactCube = () => {
               </div>
             </div>
             <div className="row">
-              <div className={`cell ${cube.vert2.middleLeft.self}`}>
+              <div onClick={() => setCommands(["left_to_up", "h_middle_to_up", "left_to_down", "h_middle_to_down"])} className={`cell ${cube.vert2.middleLeft.self}`}>
                 {cube.vert2.middleLeft.num}
               </div>
-              <div className={`cell ${cube.vert2.middleMid.self}`}>
+              <div onClick={() => setCommands(["middle_to_up", "h_middle_to_up", "middle_to_down", "h_middle_to_down"])} className={`cell ${cube.vert2.middleMid.self}`}>
                 {cube.vert2.middleMid.num}
               </div>
-              <div className={`cell ${cube.vert2.middleRight.self}`}>
+              <div onClick={() => setCommands(["right_to_up", "h_middle_to_up", "right_to_down", "h_middle_to_down"])} className={`cell ${cube.vert2.middleRight.self}`}>
                 {cube.vert2.middleRight.num}
               </div>
             </div>
