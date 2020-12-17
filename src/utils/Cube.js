@@ -215,6 +215,40 @@ export class Cube {
         this.vert2.middleMid = new Cell(h1.mm);
         this.vert2.middleRight = new Cell(h1.bm);
         break;
+      case "h_middle_to_up":
+        this.hori1.topMid = new Cell(v2.ml);
+        this.hori1.middleMid = new Cell(v2.mm);
+        this.hori1.bottomMid = new Cell(v2.mr);
+
+        this.hori2.topMid = new Cell(v1.ml);
+        this.hori2.middleMid = new Cell(v1.mm);
+        this.hori2.bottomMid = new Cell(v1.mr);
+
+        this.vert1.middleLeft = new Cell(h1.bm);
+        this.vert1.middleMid = new Cell(h1.mm);
+        this.vert1.middleRight = new Cell(h1.tm);
+
+        this.vert2.middleLeft = new Cell(h2.bm);
+        this.vert2.middleMid = new Cell(h2.mm);
+        this.vert2.middleRight = new Cell(h2.tm);
+        break;
+      case "h_middle_to_down":
+        this.hori1.topMid = new Cell(v1.mr);
+        this.hori1.middleMid = new Cell(v1.mm);
+        this.hori1.bottomMid = new Cell(v1.ml);
+
+        this.hori2.topMid = new Cell(v2.mr);
+        this.hori2.middleMid = new Cell(v2.mm);
+        this.hori2.bottomMid = new Cell(v2.ml);
+
+        this.vert1.middleLeft = new Cell(h2.tm);
+        this.vert1.middleMid = new Cell(h2.mm);
+        this.vert1.middleRight = new Cell(h2.bm);
+
+        this.vert2.middleLeft = new Cell(h1.tm);
+        this.vert2.middleMid = new Cell(h1.mm);
+        this.vert2.middleRight = new Cell(h1.bm);
+        break;
       case "h_right_to_up":
         //do the thing
         this.hori1.upAndDown(h1, v2, "Right");
