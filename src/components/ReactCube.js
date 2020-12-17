@@ -5,6 +5,17 @@ import { Cube } from "../utils/Cube";
 let rubix = new Cube(yellow, white, green, blue, orange, red);
 
 const ReactCube = () => {
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', (event) => {
+      console.log(event.key)
+      console.log(event)
+      // switch(event.key){
+      //   case W
+      // }
+    });
+  }, []);
+  
   const [cube, setCube] = useState(rubix);
   const [commandies, setCommands] = useState(['do_nothing', 'do_nothing', 'do_nothing', 'do_nothing'])
 
