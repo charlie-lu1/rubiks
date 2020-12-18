@@ -8,7 +8,6 @@ export class Cube {
     this.lati2 = new Face(red);
   }
   command(phrase) {
-    console.log(phrase);
     let h1 = {
       id: this.hori1.id,
       tl: this.hori1.topLeft,
@@ -123,7 +122,6 @@ export class Cube {
         this.hori2.leftAndRight(h2, l1, "bottom");
         this.vert2.rotateFace(v2, "clockwise");
         break;
-
       //---------------------------------------------------------------
       case "left_to_up":
         this.lati1.upAndDown(l1, v2, "Left");
@@ -167,10 +165,10 @@ export class Cube {
         break;
       //---------------------------------------------------------------
       case "h_left_to_up":
-        this.hori1.upAndDown(h1, v2, "Right");
-        this.vert1.upAndDown(v1, h1, "bottom");
+        this.hori1.upAndDown(h1, v2, "Left");
+        this.vert1.upAndDown(v1, h1, "Left");
         this.hori2.upAndDown(h2, v1, "Left");
-        this.vert2.upAndDown(v2, h2, "top");
+        this.vert2.upAndDown(v2, h2, "Left");
         this.lati2.rotateFace(l2, "clockwise");
         break;
       case "h_left_to_down":
@@ -215,55 +213,21 @@ export class Cube {
         this.vert2.middleMid = new Cell(h1.mm);
         this.vert2.middleRight = new Cell(h1.bm);
         break;
-      case "h_middle_to_up":
-        this.hori1.topMid = new Cell(v2.ml);
-        this.hori1.middleMid = new Cell(v2.mm);
-        this.hori1.bottomMid = new Cell(v2.mr);
-
-        this.hori2.topMid = new Cell(v1.ml);
-        this.hori2.middleMid = new Cell(v1.mm);
-        this.hori2.bottomMid = new Cell(v1.mr);
-
-        this.vert1.middleLeft = new Cell(h1.bm);
-        this.vert1.middleMid = new Cell(h1.mm);
-        this.vert1.middleRight = new Cell(h1.tm);
-
-        this.vert2.middleLeft = new Cell(h2.bm);
-        this.vert2.middleMid = new Cell(h2.mm);
-        this.vert2.middleRight = new Cell(h2.tm);
-        break;
-      case "h_middle_to_down":
-        this.hori1.topMid = new Cell(v1.mr);
-        this.hori1.middleMid = new Cell(v1.mm);
-        this.hori1.bottomMid = new Cell(v1.ml);
-
-        this.hori2.topMid = new Cell(v2.mr);
-        this.hori2.middleMid = new Cell(v2.mm);
-        this.hori2.bottomMid = new Cell(v2.ml);
-
-        this.vert1.middleLeft = new Cell(h2.tm);
-        this.vert1.middleMid = new Cell(h2.mm);
-        this.vert1.middleRight = new Cell(h2.bm);
-
-        this.vert2.middleLeft = new Cell(h1.tm);
-        this.vert2.middleMid = new Cell(h1.mm);
-        this.vert2.middleRight = new Cell(h1.bm);
-        break;
       case "h_right_to_up":
         //do the thing
         this.hori1.upAndDown(h1, v2, "Right");
-        this.vert1.upAndDown(v1, h1, "bottom");
-        this.hori2.upAndDown(h2, v1, "Left");
-        this.vert2.upAndDown(v2, h2, "top");
+        this.vert1.upAndDown(v1, h1, "Right");
+        this.hori2.upAndDown(h2, v1, "Right");
+        this.vert2.upAndDown(v2, h2, "Right");
 
         this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_right_to_down":
         //do the thing
         this.hori1.upAndDown(h1, v1, "Right");
-        this.vert1.upAndDown(v1, h2, "bottom");
-        this.hori2.upAndDown(h2, v2, "Left");
-        this.vert2.upAndDown(v2, h1, "top");
+        this.vert1.upAndDown(v1, h2, "Right");
+        this.hori2.upAndDown(h2, v2, "Right");
+        this.vert2.upAndDown(v2, h1, "Right");
 
         this.lati1.rotateFace(l1, "counterclockwise");
         break;
@@ -297,149 +261,205 @@ class Face {
     this.bottomMid = new Cell(bottomMid);
     this.bottomRight = new Cell(bottomRight);
   }
-  leftAndRight(fromFace, toFace, row) {
+  leftAndRight(outputFace, inputFace, row) {
     if (row === "top" || row === "bottom") {
-      if (fromFace.id !== "lati2" && toFace.id === "lati2") {
+      if (outputFace.id !== "lati2" && inputFace.id === "lati2") {
         // leaving the back face
         if (row === "top") {
           // changing top row
-          this.topLeft = new Cell(toFace.bl);
-          this.topMid = new Cell(toFace.bm); // T >> B
-          this.topRight = new Cell(toFace.br);
+          this.topLeft = new Cell(inputFace.bl);
+          this.topMid = new Cell(inputFace.bm); // T >> B
+          this.topRight = new Cell(inputFace.br);
         } else {
           // changing bottom row
-          this.bottomLeft = new Cell(toFace.tl);
-          this.bottomMid = new Cell(toFace.tm); // B >> T
-          this.bottomRight = new Cell(toFace.tr);
+          this.bottomLeft = new Cell(inputFace.tl);
+          this.bottomMid = new Cell(inputFace.tm); // B >> T
+          this.bottomRight = new Cell(inputFace.tr);
         }
-      } else if (fromFace.id === "lati2" && toFace.id !== "lati2") {
+      } else if (outputFace.id === "lati2" && inputFace.id !== "lati2") {
         //entering the back face
         if (row === "top") {
           // changing top row
-          this.bottomLeft = new Cell(toFace.tl);
-          this.bottomMid = new Cell(toFace.tm); //B >> T
-          this.bottomRight = new Cell(toFace.tr);
+          this.bottomLeft = new Cell(inputFace.tl);
+          this.bottomMid = new Cell(inputFace.tm); //B >> T
+          this.bottomRight = new Cell(inputFace.tr);
         } else {
           // changing bottom row
-          this.topLeft = new Cell(toFace.bl);
-          this.topMid = new Cell(toFace.bm); //T >> B
-          this.topRight = new Cell(toFace.br);
+          this.topLeft = new Cell(inputFace.bl);
+          this.topMid = new Cell(inputFace.bm); //T >> B
+          this.topRight = new Cell(inputFace.br);
         }
       } else {
         // everything else
         const r = row.split("")[0];
-        this[`${row}Left`] = new Cell(toFace[`${r}l`]);
-        this[`${row}Mid`] = new Cell(toFace[`${r}m`]);
-        this[`${row}Right`] = new Cell(toFace[`${r}r`]);
+        this[`${row}Left`] = new Cell(inputFace[`${r}l`]);
+        this[`${row}Mid`] = new Cell(inputFace[`${r}m`]);
+        this[`${row}Right`] = new Cell(inputFace[`${r}r`]);
       }
     } else {
       // middle row
       const r = row.split("")[0];
-      this[`${row}Left`] = new Cell(toFace[`${r}l`]);
-      this[`${row}Mid`] = new Cell(toFace[`${r}m`]);
-      this[`${row}Right`] = new Cell(toFace[`${r}r`]);
+      this[`${row}Left`] = new Cell(inputFace[`${r}l`]);
+      this[`${row}Mid`] = new Cell(inputFace[`${r}m`]);
+      this[`${row}Right`] = new Cell(inputFace[`${r}r`]);
     }
   }
-  upAndDown(fromFace, toFace, column) {
+  upAndDown(outputFace, inputFace, column) {
     const c = column.split("")[0].toLowerCase();
-    if (fromFace.id === "vert1" && toFace.id === "hori1") {
+    //------------------HRTU && HLTU-----------------------
+    if (
+      (outputFace.id === "vert1" &&
+        inputFace.id === "hori1" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "vert2" &&
+        inputFace.id === "hori2")
+    ) {
       // left >> top
-      this["bottomLeft"] = new Cell(toFace.br);
-      this["bottomMid"] = new Cell(toFace.mr);
-      this["bottomRight"] = new Cell(toFace.tr);
+      this["bottomLeft"] = new Cell(inputFace.br);
+      this["bottomMid"] = new Cell(inputFace.mr);
+      this["bottomRight"] = new Cell(inputFace.tr);
     }
-    if (fromFace.id === "hori2" && toFace.id === "vert1") {
+    if (
+      (outputFace.id === "hori2" &&
+        inputFace.id === "vert1" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "hori1" &&
+        inputFace.id === "vert2")
+    ) {
       // top >> right
-      this[`topLeft`] = new Cell(toFace.bl);
-      this[`middleLeft`] = new Cell(toFace.bm);
-      this[`bottomLeft`] = new Cell(toFace.br);
+      this[`topLeft`] = new Cell(inputFace.bl);
+      this[`middleLeft`] = new Cell(inputFace.bm);
+      this[`bottomLeft`] = new Cell(inputFace.br);
     }
-    if (fromFace.id === "vert2" && toFace.id === "hori2") {
+    if (
+      (outputFace.id === "vert2" &&
+        inputFace.id === "hori2" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "vert1" &&
+        inputFace.id === "hori1")
+    ) {
       //right >> bottom
-      this[`topLeft`] = new Cell(toFace.bl);
-      this[`topMid`] = new Cell(toFace.ml);
-      this[`topRight`] = new Cell(toFace.tl);
+      this[`topLeft`] = new Cell(inputFace.bl);
+      this[`topMid`] = new Cell(inputFace.ml);
+      this[`topRight`] = new Cell(inputFace.tl);
     }
-    if (fromFace.id === "hori1" && toFace.id === "vert2") {
+    if (
+      (outputFace.id === "hori1" &&
+        inputFace.id === "vert2" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "hori2" &&
+        inputFace.id === "vert1")
+    ) {
       //bottom >> left
-      this[`topRight`] = new Cell(toFace.tl);
-      this[`middleRight`] = new Cell(toFace.tm);
-      this[`bottomRight`] = new Cell(toFace.tr);
+      this[`topRight`] = new Cell(inputFace.tl);
+      this[`middleRight`] = new Cell(inputFace.tm);
+      this[`bottomRight`] = new Cell(inputFace.tr);
     }
-
-    if (toFace.id === "vert1" && fromFace.id === "hori1") {
-      // left >> top
-      this["bottomLeft"] = new Cell(toFace.br);
-      this["bottomMid"] = new Cell(toFace.mr);
-      this["bottomRight"] = new Cell(toFace.tr);
+    //------------------HRTD && HLTD-----------------------
+    if (
+      (inputFace.id === "vert1" &&
+        outputFace.id === "hori1" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "hori2" &&
+        inputFace.id === "vert2")
+    ) {
+      // left << top
+      this[`topRight`] = new Cell(inputFace.br);
+      this[`middleRight`] = new Cell(inputFace.bm);
+      this[`bottomRight`] = new Cell(inputFace.bl);
     }
-    if (toFace.id === "hori2" && fromFace.id === "vert1") {
-      // top >> right
-      this[`topLeft`] = new Cell(toFace.bl);
-      this[`middleLeft`] = new Cell(toFace.bm);
-      this[`bottomLeft`] = new Cell(toFace.br);
+    if (
+      (inputFace.id === "hori2" &&
+        outputFace.id === "vert1" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "vert2" &&
+        inputFace.id === "hori1")
+    ) {
+      // top << right
+      this[`bottomLeft`] = new Cell(inputFace.tl);
+      this[`bottomMid`] = new Cell(inputFace.ml);
+      this[`bottomRight`] = new Cell(inputFace.bl);
     }
-    if (toFace.id === "vert2" && fromFace.id === "hori2") {
-      //right >> bottom
-      this[`topLeft`] = new Cell(toFace.bl);
-      this[`topMid`] = new Cell(toFace.ml);
-      this[`topRight`] = new Cell(toFace.tl);
+    if (
+      (inputFace.id === "vert2" &&
+        outputFace.id === "hori2" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "hori1" &&
+        inputFace.id === "vert1")
+    ) {
+      //right << bottom
+      this[`topLeft`] = new Cell(inputFace.tr);
+      this[`middleLeft`] = new Cell(inputFace.tm);
+      this[`bottomLeft`] = new Cell(inputFace.tl);
     }
-    if (toFace.id === "hori1" && fromFace.id === "vert2") {
-      //bottom >> left
-      this[`topRight`] = new Cell(toFace.tl);
-      this[`middleRight`] = new Cell(toFace.tm);
-      this[`bottomRight`] = new Cell(toFace.tr);
+    if (
+      (inputFace.id === "hori1" &&
+        outputFace.id === "vert2" &&
+        column == "Right") ||
+      (column == "Left" &&
+        outputFace.id === "vert1" &&
+        inputFace.id === "hori2")
+    ) {
+      //bottom << left
+      this[`topLeft`] = new Cell(inputFace.tr);
+      this[`topMid`] = new Cell(inputFace.mr);
+      this[`topRight`] = new Cell(inputFace.br);
     }
 
     if (
-      fromFace.id !== "hori1" &&
-      fromFace.id !== "hori2" &&
-      toFace.id !== "hori1" &&
-      toFace.id !== "hori2"
+      outputFace.id !== "hori1" &&
+      outputFace.id !== "hori2" &&
+      inputFace.id !== "hori1" &&
+      inputFace.id !== "hori2"
     ) {
       if (
-        fromFace.id !== "lati2" &&
-        toFace.id === "lati2" &&
+        outputFace.id !== "lati2" &&
+        inputFace.id === "lati2" &&
         (column === "Left" || column === "Right")
       ) {
         //  back face >> any face
         // leaving the back face
         if (column === "Left") {
           // changing bottom column
-          this.topLeft = new Cell(toFace.tr);
-          this.middleLeft = new Cell(toFace.mr); // B >> T
-          this.bottomLeft = new Cell(toFace.br);
+          this.topLeft = new Cell(inputFace.tr);
+          this.middleLeft = new Cell(inputFace.mr); // B >> T
+          this.bottomLeft = new Cell(inputFace.br);
         } else {
           // changing top column
-          this.topRight = new Cell(toFace.tl);
-          this.middleRight = new Cell(toFace.ml); // T >> B
-          this.bottomRight = new Cell(toFace.bl);
+          this.topRight = new Cell(inputFace.tl);
+          this.middleRight = new Cell(inputFace.ml); // T >> B
+          this.bottomRight = new Cell(inputFace.bl);
         }
       } else if (
-        fromFace.id === "lati2" &&
-        toFace.id !== "lati2" &&
+        outputFace.id === "lati2" &&
+        inputFace.id !== "lati2" &&
         (column === "Left" || column === "Right")
       ) {
         // any face >> back face
         //entering the back face
         if (column === "Left") {
           // changing top column
-          this.topRight = new Cell(toFace.tl);
-          this.middleRight = new Cell(toFace.ml); // B >> T
-          this.bottomRight = new Cell(toFace.bl);
+          this.topRight = new Cell(inputFace.tl);
+          this.middleRight = new Cell(inputFace.ml); // B >> T
+          this.bottomRight = new Cell(inputFace.bl);
         } else {
           // changing bottom column
 
-          this.topLeft = new Cell(toFace.tr);
-          this.middleLeft = new Cell(toFace.mr); // T >> B
-          this.bottomLeft = new Cell(toFace.br);
+          this.topLeft = new Cell(inputFace.tr);
+          this.middleLeft = new Cell(inputFace.mr); // T >> B
+          this.bottomLeft = new Cell(inputFace.br);
         }
       } else {
-        console.log(`${fromFace.id} else`);
-        this[`top${column}`] = new Cell(toFace[`t${c}`]);
-        this[`middle${column}`] = new Cell(toFace[`m${c}`]);
-        this[`bottom${column}`] = new Cell(toFace[`b${c}`]);
+        this[`top${column}`] = new Cell(inputFace[`t${c}`]);
+        this[`middle${column}`] = new Cell(inputFace[`m${c}`]);
+        this[`bottom${column}`] = new Cell(inputFace[`b${c}`]);
       }
     }
   }
