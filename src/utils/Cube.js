@@ -399,10 +399,9 @@ class Face {
       toFace.id !== "hori2"
     ) {
       if (
-        (fromFace.id !== "lati2" &&
-          toFace.id === "lati2" &&
-          column === "Left") ||
-        column === "Right"
+        fromFace.id !== "lati2" &&
+        toFace.id === "lati2" &&
+        (column === "Left" || column === "Right")
       ) {
         //  back face >> any face
         // leaving the back face
@@ -418,10 +417,9 @@ class Face {
           this.bottomRight = new Cell(toFace.bl);
         }
       } else if (
-        (fromFace.id === "lati2" &&
-          toFace.id !== "lati2" &&
-          column === "Left") ||
-        column === "Right"
+        fromFace.id === "lati2" &&
+        toFace.id !== "lati2" &&
+        (column === "Left" || column === "Right")
       ) {
         // any face >> back face
         //entering the back face
@@ -432,11 +430,13 @@ class Face {
           this.bottomRight = new Cell(toFace.bl);
         } else {
           // changing bottom column
+
           this.topLeft = new Cell(toFace.tr);
           this.middleLeft = new Cell(toFace.mr); // T >> B
           this.bottomLeft = new Cell(toFace.br);
         }
       } else {
+        console.log(`${fromFace.id} else`);
         this[`top${column}`] = new Cell(toFace[`t${c}`]);
         this[`middle${column}`] = new Cell(toFace[`m${c}`]);
         this[`bottom${column}`] = new Cell(toFace[`b${c}`]);
