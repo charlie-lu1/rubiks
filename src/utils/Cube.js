@@ -172,7 +172,6 @@ export class Cube {
         this.lati2.rotateFace(l2, "clockwise");
         break;
       case "h_left_to_down":
-        //do the thing
         this.hori1.upAndDown(h1, v1, "Left");
         this.vert1.upAndDown(v1, h2, "Left");
         this.hori2.upAndDown(h2, v2, "Left");
@@ -214,7 +213,6 @@ export class Cube {
         this.vert2.middleRight = new Cell(h1.bm);
         break;
       case "h_right_to_up":
-        //do the thing
         this.hori1.upAndDown(h1, v2, "Right");
         this.vert1.upAndDown(v1, h1, "Right");
         this.hori2.upAndDown(h2, v1, "Right");
@@ -223,7 +221,6 @@ export class Cube {
         this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_right_to_down":
-        //do the thing
         this.hori1.upAndDown(h1, v1, "Right");
         this.vert1.upAndDown(v1, h2, "Right");
         this.hori2.upAndDown(h2, v2, "Right");
