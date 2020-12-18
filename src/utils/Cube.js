@@ -231,6 +231,9 @@ export class Cube {
 
         this.lati1.rotateFace(l1, "counterclockwise");
         break;
+      default:
+        console.log("default case");
+        break;
     }
   }
 }
@@ -310,8 +313,8 @@ class Face {
     if (
       (outputFace.id === "vert1" &&
         inputFace.id === "hori1" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "vert2" &&
         inputFace.id === "hori2")
     ) {
@@ -323,8 +326,8 @@ class Face {
     if (
       (outputFace.id === "hori2" &&
         inputFace.id === "vert1" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "hori1" &&
         inputFace.id === "vert2")
     ) {
@@ -336,8 +339,8 @@ class Face {
     if (
       (outputFace.id === "vert2" &&
         inputFace.id === "hori2" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "vert1" &&
         inputFace.id === "hori1")
     ) {
@@ -349,8 +352,8 @@ class Face {
     if (
       (outputFace.id === "hori1" &&
         inputFace.id === "vert2" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "hori2" &&
         inputFace.id === "vert1")
     ) {
@@ -363,8 +366,8 @@ class Face {
     if (
       (inputFace.id === "vert1" &&
         outputFace.id === "hori1" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "hori2" &&
         inputFace.id === "vert2")
     ) {
@@ -376,8 +379,8 @@ class Face {
     if (
       (inputFace.id === "hori2" &&
         outputFace.id === "vert1" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "vert2" &&
         inputFace.id === "hori1")
     ) {
@@ -389,8 +392,8 @@ class Face {
     if (
       (inputFace.id === "vert2" &&
         outputFace.id === "hori2" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "hori1" &&
         inputFace.id === "vert1")
     ) {
@@ -402,8 +405,8 @@ class Face {
     if (
       (inputFace.id === "hori1" &&
         outputFace.id === "vert2" &&
-        column == "Right") ||
-      (column == "Left" &&
+        column === "Right") ||
+      (column === "Left" &&
         outputFace.id === "vert1" &&
         inputFace.id === "hori2")
     ) {
@@ -465,7 +468,7 @@ class Face {
   }
   // Rotate 90 degrees
   rotateFace(face, direction) {
-    if (direction == "clockwise") {
+    if (direction === "clockwise") {
       // rotate clockwise
       this["topLeft"] = new Cell(face["bl"]);
       this["topMid"] = new Cell(face["ml"]);
@@ -475,7 +478,7 @@ class Face {
       this["bottomMid"] = new Cell(face["mr"]);
       this["bottomLeft"] = new Cell(face["br"]);
       this["middleLeft"] = new Cell(face["bm"]);
-    } else if (direction == "counterclockwise") {
+    } else if (direction === "counterclockwise") {
       // rotate counterclockwise
       this["topLeft"] = new Cell(face["tr"]);
       this["topMid"] = new Cell(face["mr"]);

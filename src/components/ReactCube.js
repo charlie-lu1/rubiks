@@ -72,6 +72,9 @@ const ReactCube = () => {
           // console.log(commandies)
           // console.log('d pressed')
           break;
+        default:
+          console.log("default case");
+          break;
       }
     });
   }, [commandies]);
