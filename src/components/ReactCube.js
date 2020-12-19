@@ -76,66 +76,101 @@ const ReactCube = () => {
           console.log("default case");
           break;
       }
+      console.table(count());
     });
   }, [commandies]);
 
   const count = () => {
-    return (
-      cube.vert1.topLeft.num +
-      cube.vert1.topMid.num +
-      cube.vert1.topRight.num +
-      cube.vert1.middleLeft.num +
-      cube.vert1.middleMid.num +
-      cube.vert1.middleRight.num +
-      cube.vert1.bottomLeft.num +
-      cube.vert1.bottomMid.num +
-      cube.vert1.bottomRight.num +
-      cube.hori1.topLeft.num +
-      cube.hori1.topMid.num +
-      cube.hori1.topRight.num +
-      cube.hori1.middleLeft.num +
-      cube.hori1.middleMid.num +
-      cube.hori1.middleRight.num +
-      cube.hori1.bottomLeft.num +
-      cube.hori1.bottomMid.num +
-      cube.hori1.bottomRight.num +
-      cube.lati1.topLeft.num +
-      cube.lati1.topMid.num +
-      cube.lati1.topRight.num +
-      cube.lati1.middleLeft.num +
-      cube.lati1.middleMid.num +
-      cube.lati1.middleRight.num +
-      cube.lati1.bottomLeft.num +
-      cube.lati1.bottomMid.num +
-      cube.lati1.bottomRight.num +
-      cube.hori2.topLeft.num +
-      cube.hori2.topMid.num +
-      cube.hori2.topRight.num +
-      cube.hori2.middleLeft.num +
-      cube.hori2.middleMid.num +
-      cube.hori2.middleRight.num +
-      cube.hori2.bottomLeft.num +
-      cube.hori2.bottomMid.num +
-      cube.hori2.bottomRight.num +
-      cube.lati2.bottomLeft.num +
-      cube.lati2.bottomMid.num +
-      cube.lati2.bottomRight.num +
-      cube.lati2.middleLeft.num +
-      cube.lati2.middleMid.num +
-      cube.lati2.middleRight.num +
-      cube.lati2.topLeft.num +
-      cube.lati2.topMid.num +
-      cube.lati2.topRight.num +
-      cube.vert2.topLeft.num +
-      cube.vert2.topMid.num +
-      cube.vert2.topRight.num +
-      cube.vert2.middleLeft.num +
-      cube.vert2.middleMid.num +
-      cube.vert2.middleRight.num +
-      cube.vert2.bottomLeft.num +
-      cube.vert2.bottomMid.num +
-      cube.vert2.bottomRight.num
-    );
+    const res = {
+      red: 0,
+      blue: 0,
+      green: 0,
+      yellow: 0,
+      orange: 0,
+      white: 0,
+    };
+    const countArr = [
+      cube.vert1.topLeft.self,
+      cube.vert1.topMid.self,
+      cube.vert1.topRight.self,
+      cube.vert1.middleLeft.self,
+      cube.vert1.middleMid.self,
+      cube.vert1.middleRight.self,
+      cube.vert1.bottomLeft.self,
+      cube.vert1.bottomMid.self,
+      cube.vert1.bottomRight.self,
+      cube.hori1.topLeft.self,
+      cube.hori1.topMid.self,
+      cube.hori1.topRight.self,
+      cube.hori1.middleLeft.self,
+      cube.hori1.middleMid.self,
+      cube.hori1.middleRight.self,
+      cube.hori1.bottomLeft.self,
+      cube.hori1.bottomMid.self,
+      cube.hori1.bottomRight.self,
+      cube.lati1.topLeft.self,
+      cube.lati1.topMid.self,
+      cube.lati1.topRight.self,
+      cube.lati1.middleLeft.self,
+      cube.lati1.middleMid.self,
+      cube.lati1.middleRight.self,
+      cube.lati1.bottomLeft.self,
+      cube.lati1.bottomMid.self,
+      cube.lati1.bottomRight.self,
+      cube.hori2.topLeft.self,
+      cube.hori2.topMid.self,
+      cube.hori2.topRight.self,
+      cube.hori2.middleLeft.self,
+      cube.hori2.middleMid.self,
+      cube.hori2.middleRight.self,
+      cube.hori2.bottomLeft.self,
+      cube.hori2.bottomMid.self,
+      cube.hori2.bottomRight.self,
+      cube.lati2.bottomLeft.self,
+      cube.lati2.bottomMid.self,
+      cube.lati2.bottomRight.self,
+      cube.lati2.middleLeft.self,
+      cube.lati2.middleMid.self,
+      cube.lati2.middleRight.self,
+      cube.lati2.topLeft.self,
+      cube.lati2.topMid.self,
+      cube.lati2.topRight.self,
+      cube.vert2.topLeft.self,
+      cube.vert2.topMid.self,
+      cube.vert2.topRight.self,
+      cube.vert2.middleLeft.self,
+      cube.vert2.middleMid.self,
+      cube.vert2.middleRight.self,
+      cube.vert2.bottomLeft.self,
+      cube.vert2.bottomMid.self,
+      cube.vert2.bottomRight.self,
+    ];
+    countArr.forEach((color) => {
+      switch (color) {
+        case "red":
+          res.red += 1;
+          break;
+        case "blue":
+          res.blue += 1;
+          break;
+        case "green":
+          res.green += 1;
+          break;
+        case "yellow":
+          res.yellow += 1;
+          break;
+        case "orange":
+          res.orange += 1;
+          break;
+        case "white":
+          res.white += 1;
+          break;
+        default:
+          console.log("default case");
+          break;
+      }
+    });
+    return res;
   };
   return (
     <>
@@ -154,7 +189,7 @@ const ReactCube = () => {
                 {cube.vert1.topRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -195,7 +230,7 @@ const ReactCube = () => {
                 {cube.vert1.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.vert1.bottomLeft.self}`}>
                 {cube.vert1.bottomLeft.num}
               </div>
@@ -211,7 +246,7 @@ const ReactCube = () => {
 
         <div className="mid">
           <div className="face">
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori1.topLeft.self}`}>
                 {cube.hori1.topLeft.num}
               </div>
@@ -232,7 +267,7 @@ const ReactCube = () => {
                 {cube.hori1.topRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori1.middleLeft.self}`}>
                 {cube.hori1.middleLeft.num}
               </div>
@@ -253,7 +288,7 @@ const ReactCube = () => {
                 {cube.hori1.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori1.bottomLeft.self}`}>
                 {cube.hori1.bottomLeft.num}
               </div>
@@ -276,7 +311,7 @@ const ReactCube = () => {
             </div>
           </div>
           <div className="face">
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -317,7 +352,7 @@ const ReactCube = () => {
                 {cube.lati1.topRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -359,7 +394,7 @@ const ReactCube = () => {
                 {cube.lati1.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -402,7 +437,7 @@ const ReactCube = () => {
             </div>
           </div>
           <div className="face">
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori2.topLeft.self}`}>
                 {cube.hori2.topLeft.num}
               </div>
@@ -423,7 +458,7 @@ const ReactCube = () => {
                 {cube.hori2.topRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori2.middleLeft.self}`}>
                 {cube.hori2.middleLeft.num}
               </div>
@@ -444,7 +479,7 @@ const ReactCube = () => {
                 {cube.hori2.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.hori2.bottomLeft.self}`}>
                 {cube.hori2.bottomLeft.num}
               </div>
@@ -467,7 +502,7 @@ const ReactCube = () => {
             </div>
           </div>
           <div className="face">
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -508,7 +543,7 @@ const ReactCube = () => {
                 {cube.lati2.bottomRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -549,7 +584,7 @@ const ReactCube = () => {
                 {cube.lati2.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.lati2.topLeft.self}`}>
                 {cube.lati2.topLeft.num}
               </div>
@@ -566,7 +601,7 @@ const ReactCube = () => {
         <div className="mid">
           <div className="face none"></div>
           <div className="face">
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.vert2.topLeft.self}`}>
                 {cube.vert2.topLeft.num}
               </div>
@@ -577,7 +612,7 @@ const ReactCube = () => {
                 {cube.vert2.topRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div
                 onClick={() =>
                   setCommands([
@@ -618,7 +653,7 @@ const ReactCube = () => {
                 {cube.vert2.middleRight.num}
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className={`cell ${cube.vert2.bottomLeft.self}`}>
                 {cube.vert2.bottomLeft.num}
               </div>
@@ -683,7 +718,7 @@ const ReactCube = () => {
                   }`
                 );
               }
-              console.log(count());
+              console.table(count());
             }}
           >
             Scramble
