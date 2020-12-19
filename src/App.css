@@ -17,9 +17,6 @@
   color: #61dafb;
 }
 
-.cube {
-}
-
 .top {
   margin-left: 50px;
 }
@@ -54,7 +51,6 @@
 .face {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
   width: 25%;
 }
 .row {
@@ -65,29 +61,41 @@
 .cell {
   display: flex;
   width: 32%;
-  border: 1px solid white;
+  border: 1px solid black;
   justify-content: center;
 }
 
 .yellow {
   background: yellow;
+  color: yellow;
 }
 .white {
   background: white;
+  color: white;
 }
 .green {
   background: green;
+  color: green;
 }
 .blue {
   background: blue;
+  color: blue;
 }
 .orange {
   background: orange;
+  color: orange;
 }
 .red {
   background: red;
+  color: red;
 }
 
 .none {
   border: none;
+}
+
+.row-it {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
