@@ -23,12 +23,12 @@ const ReactCube = () => {
     "middle_to_down",
     "right_to_up",
     "right_to_down",
-    // "h_left_to_up",
-    // "h_left_to_down",
+    "h_left_to_up",
+    "h_left_to_down",
     "h_middle_to_up",
     "h_middle_to_down",
-    // "h_right_to_up",
-    // "h_right_to_down"
+    "h_right_to_up",
+    "h_right_to_down"
   ]
 
   const command = (phrase) => {

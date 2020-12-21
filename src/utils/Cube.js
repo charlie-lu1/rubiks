@@ -168,19 +168,50 @@ export class Cube {
         break;
       //---------------------------------------------------------------
       case "h_left_to_up":
-        this.hori1.upAndDown(h1, v2, "Right");
-        this.vert1.upAndDown(v1, h1, "bottom");
-        this.hori2.upAndDown(h2, v1, "Left");
-        this.vert2.upAndDown(v2, h2, "top");
-        this.lati1.rotateFace(l1, "clockwise");
+        this.hori1.topLeft = new Cell(v2.bl);
+        this.hori1.middleLeft = new Cell(v2.bm);
+        this.hori1.bottomLeft = new Cell(v2.br);
+
+        this.hori2.topRight = new Cell(v1.tl);
+        this.hori2.middleRight = new Cell(v1.tm);
+        this.hori2.bottomRight = new Cell(v1.tr);
+
+        this.vert1.topLeft = new Cell(h1.bl);
+        this.vert1.topMid = new Cell(h1.ml);
+        this.vert1.topRight = new Cell(h1.tl);
+
+        this.vert2.bottomLeft = new Cell(h2.br);
+        this.vert2.bottomMid = new Cell(h2.mr);
+        this.vert2.bottomRight = new Cell(h2.tr);
+        // this.hori1.upAndDown(h1, v2, "Right");
+        // this.vert1.upAndDown(v1, h1, "bottom");
+        // this.hori2.upAndDown(h2, v1, "Left");
+        // this.vert2.upAndDown(v2, h2, "top");
+        // this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_left_to_down":
         //do the thing
-        this.hori1.upAndDown(h1, v1, "Left");
-        this.vert1.upAndDown(v1, h2, "Left");
-        this.hori2.upAndDown(h2, v2, "Left");
-        this.vert2.upAndDown(v2, h1, "Left");
-        this.lati1.rotateFace(l1, "clockwise");
+        //counterclockwise rotation
+        this.hori1.topLeft = new Cell(v1.tr);
+        this.hori1.middleLeft = new Cell(v1.tm);
+        this.hori1.bottomLeft = new Cell(v1.tl);
+
+        this.hori2.topRight = new Cell(v2.br);
+        this.hori2.middleRight = new Cell(v2.bm);
+        this.hori2.bottomRight = new Cell(v2.bl);
+
+        this.vert1.topLeft = new Cell(h2.tr);
+        this.vert1.topMid = new Cell(h2.mr);
+        this.vert1.topRight = new Cell(h2.br);
+
+        this.vert2.bottomLeft = new Cell(h1.tl);
+        this.vert2.bottomMid = new Cell(h1.ml);
+        this.vert2.bottomRight = new Cell(h1.bl);
+        // this.hori1.upAndDown(h1, v1, "Left");
+        // this.vert1.upAndDown(v1, h2, "Left");
+        // this.hori2.upAndDown(h2, v2, "Left");
+        // this.vert2.upAndDown(v2, h1, "Left");
+        // this.lati1.rotateFace(l1, "clockwise");
         break;
       case "h_middle_to_up":
         this.hori1.topMid = new Cell(v2.ml);
@@ -226,11 +257,26 @@ export class Cube {
         break;
       case "h_right_to_down":
         //do the thing
-        this.hori1.upAndDown(h1, v1, "Right");
-        this.vert1.upAndDown(v1, h2, "Right");
-        this.hori2.upAndDown(h2, v2, "Right");
-        this.vert2.upAndDown(v2, h1, "Right");
-        this.lati2.rotateFace(l2, "clockwise");
+        this.hori1.topRight = new Cell(v1.br);
+        this.hori1.middleRight = new Cell(v1.bm);
+        this.hori1.bottomRight = new Cell(v1.bl);
+
+        this.hori2.topLeft = new Cell(v2.tr);
+        this.hori2.middleLeft = new Cell(v2.tm);
+        this.hori2.bottomLeft = new Cell(v2.tl);
+
+        this.vert1.bottomLeft = new Cell(h2.tl);
+        this.vert1.bottomMid = new Cell(h2.ml);
+        this.vert1.bottomRight = new Cell(h2.bl);
+
+        this.vert2.topLeft = new Cell(h1.tr);
+        this.vert2.topMid = new Cell(h1.mr);
+        this.vert2.topRight = new Cell(h1.br);
+        // this.hori1.upAndDown(h1, v1, "Right");
+        // this.vert1.upAndDown(v1, h2, "Right");
+        // this.hori2.upAndDown(h2, v2, "Right");
+        // this.vert2.upAndDown(v2, h1, "Right");
+        // this.lati2.rotateFace(l2, "clockwise");
         break;
     }
   }
