@@ -32,8 +32,8 @@ const ReactCube = () => {
     "h_middle_to_up",
     "h_middle_to_down",
     "h_right_to_up",
-    "h_right_to_down",
-  ];
+    "h_right_to_down"
+  ]
 
   const command = (phrase) => {
     rubix.command(phrase);
